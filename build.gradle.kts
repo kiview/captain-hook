@@ -4,7 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     `java-gradle-plugin`
-    `maven-publish`
+    `maven`
     signing
     kotlin("jvm") version "1.3.61"
     id("com.diffplug.spotless") version "5.1.1"
@@ -128,63 +128,3 @@ spotless {
 
 group = "com.github.tjni.captainhook"
 version = "0.1.4"
-
-// publishing {
-//     publications {
-//         register<MavenPublication>("mavenJava") {
-//             from(components["java"])
-
-//             pom {
-//                 name.set("Captain Hook")
-//                 description.set("Gradle plugin for installing Git hooks.")
-//                 url.set("https://github.com/tjni/captain-hook")
-
-//                 licenses {
-//                     license {
-//                         name.set("The Apache License, Version 2.0")
-//                         url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-//                     }
-//                 }
-
-//                 developers {
-//                     developer {
-//                         name.set("Theodore Ni")
-//                         email.set("zyloch@gmail.com")
-//                         url.set("https://github.com/tjni")
-//                     }
-//                 }
-
-//                 scm {
-//                     connection.set("scm:git:git://github.com/tjni/captain-hook.git")
-//                     developerConnection.set("scm:git:ssh://github.com/tjni/captain-hook.git")
-//                     url.set("https://github.com/tjni/captain-hook")
-//                 }
-//             }
-//         }
-//     }
-
-//     repositories {
-//         maven {
-//             url = when (version.toString().endsWith("SNAPSHOT")) {
-//                 true -> uri("https://oss.sonatype.org/content/repositories/snapshots/")
-//                 false -> uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-//             }
-
-//             credentials {
-//                 username = properties["nexusUsername"] as String?
-//                 password = properties["nexusPassword"] as String?
-//             }
-//         }
-//     }
-// }
-
-// signing {
-//     val signingKeyId: String? by project
-//     val signingKey: String? by project
-//     val signingPassword: String? by project
-
-//     @Suppress("UnstableApiUsage")
-//     useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-
-//     sign(publishing.publications["mavenJava"])
-// }
