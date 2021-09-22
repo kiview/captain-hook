@@ -6,6 +6,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
@@ -135,7 +136,9 @@ public class ApplyGitHooksHelper {
 
   private static String getGitHookCommand(Path gitHooksDir, GitHook gitHook) {
     Path gitHookScriptFile = gitHooksDir.relativize(getGitHookScriptFile(gitHooksDir, gitHook));
-    return "`dirname \"$0\"`" + "/" + gitHookScriptFile;
+    String scriptFilePath = "`dirname \"$0\"`" + File.separatorChar + gitHookScriptFile;
+    String unixStyleScriptFilePath = scriptFilePath.replace("\\", "/");
+    return unixStyleScriptFilePath;
   }
 
   private Path addGitHook(Path gitHooksDir, GitHook gitHook) {
